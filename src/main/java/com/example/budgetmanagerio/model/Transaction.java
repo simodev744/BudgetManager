@@ -1,5 +1,6 @@
 package com.example.budgetmanagerio.model;
 
+import com.example.budgetmanagerio.model.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class Budget {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +36,4 @@ public class Budget {
 
     @Column(nullable = false)
     private LocalDate endDate;
-
-
 }
