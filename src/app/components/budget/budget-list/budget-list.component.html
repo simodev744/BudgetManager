@@ -1,1 +1,44 @@
-<p>budget-list works!</p>
+<div class="p-4">
+  <h2 class="text-2xl font-bold mb-4">Budgets</h2>
+  <button
+    class="bg-blue-600 text-white px-4 py-2 rounded mb-4 hover:bg-blue-700"
+    routerLink="/budgets/new"
+  >
+    New Budget
+  </button>
+  <table class="min-w-full bg-white shadow-md rounded">
+    <thead>
+    <tr>
+      <th class="py-2 px-4 border-b">Name</th>
+      <th class="py-2 px-4 border-b">Amount</th>
+      <th class="py-2 px-4 border-b">Category</th>
+      <th class="py-2 px-4 border-b">Start Date</th>
+      <th class="py-2 px-4 border-b">End Date</th>
+      <th class="py-2 px-4 border-b">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let budget of budgets" class="hover:bg-gray-100">
+      <td class="py-2 px-4 border-b">{{ budget.name }}</td>
+      <td class="py-2 px-4 border-b">${{ budget.amount | number:'1.2-2' }}</td>
+      <td class="py-2 px-4 border-b">{{ budget.categoryName }}</td>
+      <td class="py-2 px-4 border-b">{{ budget.startDate | date }}</td>
+      <td class="py-2 px-4 border-b">{{ budget.endDate | date }}</td>
+      <td class="py-2 px-4 border-b space-x-2">
+        <button
+          class="text-blue-600 hover:underline"
+          [routerLink]="['/budgets/edit', budget.id]"
+        >
+          Edit
+        </button>
+        <button
+          class="text-red-600 hover:underline"
+          (click)="deleteBudget(budget.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

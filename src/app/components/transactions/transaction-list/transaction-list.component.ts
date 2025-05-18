@@ -1,12 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {  Transaction } from '../../../models';
+import {Router, RouterLink} from '@angular/router';
+import {ApiService} from '../../../services/api.service';
+import {CurrencyPipe, DatePipe, NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-transaction-list',
-  imports: [],
   templateUrl: './transaction-list.component.html',
-  standalone: true,
-  styleUrl: './transaction-list.component.css'
+  imports: [
+    RouterLink,
+    CurrencyPipe,
+    NgForOf,
+    DatePipe
+  ],
+  standalone: true
 })
-export class TransactionListComponent {
+export class TransactionListComponent implements OnInit {
+  transactions: Transaction[] = [];
 
+  constructor(private api: ApiService, private router: Router) {}
+
+  ngOnInit() {
+    this.loadTransactions();
+  }
+
+  loadTransactions() {
+    this.api.getTransactions().subscribe(data => (this.transactions = data));
+  }
+
+  deleteTransaction(id: number) {
+    if (confirm('Delete this transaction?')) {
+      this.api.deleteTransaction(id).subscribe(() => this.loadTransactions());
+    }
+  }
 }

@@ -1,1 +1,46 @@
-<p>dashboard works!</p>
+<div class="p-6 space-y-6">
+  <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white shadow rounded p-4 text-center">
+      <h2 class="text-xl font-semibold mb-2">Categories</h2>
+      <p class="text-4xl font-bold">{{ categoryCount }}</p>
+    </div>
+
+    <div class="bg-white shadow rounded p-4 text-center">
+      <h2 class="text-xl font-semibold mb-2">Transactions</h2>
+      <p class="text-4xl font-bold">{{ transactionCount }}</p>
+    </div>
+
+    <div class="bg-white shadow rounded p-4 text-center">
+      <h2 class="text-xl font-semibold mb-2">Budgets</h2>
+      <p class="text-4xl font-bold">{{ budgetCount }}</p>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-2xl font-semibold mb-4">Budget Summaries</h2>
+    <table class="min-w-full bg-white shadow-md rounded">
+      <thead>
+      <tr>
+        <th class="py-2 px-4 border-b">Budget</th>
+        <th class="py-2 px-4 border-b">Category</th>
+        <th class="py-2 px-4 border-b">Budgeted</th>
+        <th class="py-2 px-4 border-b">Spent</th>
+        <th class="py-2 px-4 border-b">Remaining</th>
+        <th class="py-2 px-4 border-b">Spent %</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let summary of budgetSummaries" class="hover:bg-gray-100">
+        <td class="py-2 px-4 border-b">{{ summary.budgetName }}</td>
+        <td class="py-2 px-4 border-b">{{ summary.categoryName }}</td>
+        <td class="py-2 px-4 border-b">${{ summary.budgetAmount | number:'1.2-2' }}</td>
+        <td class="py-2 px-4 border-b">${{ summary.spentAmount | number:'1.2-2' }}</td>
+        <td class="py-2 px-4 border-b">${{ summary.remainingAmount | number:'1.2-2' }}</td>
+        <td class="py-2 px-4 border-b">{{ summary.spentPercentage | number:'1.0-0' }}%</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

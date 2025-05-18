@@ -1,31 +1,44 @@
-import {Component, destroyPlatform, inject, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {  Category } from '../../../models';
 import {ApiService} from '../../../services/api.service';
-import {Category} from '../../../models';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-category-form',
-  imports: [],
   templateUrl: './category-form.component.html',
-  standalone: true,
-  styleUrl: './category-form.component.css'
+  imports: [
+    FormsModule
+  ],
+  standalone: true
 })
-export class CategoryFormComponent {
-  private api = inject(ApiService);
+export class CategoryFormComponent implements OnInit {
+  category: Category = { name: '' };
+  isEdit = false;
 
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  sendata() {
-    this.api.createCategory({
-      name: "category",
-      description: "description2"
-    });
+  ngOnInit() {
+    const id = this.route.snapshot.params['id'];
+    if (id) {
+      this.isEdit = true;
+      this.api.getCategory(+id).subscribe(cat => (this.category = cat));
+    }
   }
 
-  private data:Category[];
-  getdata(){
- this.api.getCategories().subscribe(
-      data=> {
-        this.data = data
-      })
+  save() {
+    if (this.isEdit && this.category.id) {
+      this.api.updateCategory(this.category.id, this.category).subscribe(() => this.router.navigate(['/categories']));
+    } else {
+      this.api.createCategory(this.category).subscribe(() => this.router.navigate(['/categories']));
+    }
+  }
 
+  cancel() {
+    this.router.navigate(['/categories']);
   }
 }

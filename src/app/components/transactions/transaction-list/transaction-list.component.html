@@ -1,1 +1,35 @@
-<p>transaction-list works!</p>
+<!--
+<div class="p-6 bg-white rounded shadow">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">Transactions</h2>
+    <a routerLink="/transactions/new" class="btn-primary">Add Transaction</a>
+  </div>
+  <table class="min-w-full table-auto border-collapse border border-gray-200">
+    <thead>
+    <tr class="bg-gray-100">
+      <th class="border border-gray-300 p-2">ID</th>
+      <th class="border border-gray-300 p-2">Date</th>
+      <th class="border border-gray-300 p-2">Description</th>
+      <th class="border border-gray-300 p-2">Category</th>
+      <th class="border border-gray-300 p-2">Amount</th>
+      <th class="border border-gray-300 p-2">Type</th>
+      <th class="border border-gray-300 p-2">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let t of transactions" class="hover:bg-gray-50">
+      <td class="border border-gray-300 p-2 text-center">{{ t.id }}</td>
+      <td class="border border-gray-300 p-2">{{ t.date | date:'shortDate' }}</td>
+      <td class="border border-gray-300 p-2">{{ t.description || '-' }}</td>
+      <td class="border border-gray-300 p-2">{{ t.categoryName }}</td>
+      <td class="border border-gray-300 p-2 text-right">{{ t.amount | currency }}</td>
+      <td class="border border-gray-300 p-2 text-center">{{ t.type }}</td>
+      <td class="border border-gray-300 p-2 text-center space-x-2">
+        <a [routerLink]="['/transactions/edit', t.id]" class="text-blue-600 hover:underline">Edit</a>
+        <button (click)="deleteTransaction(t.id)" class="text-red-600 hover:underline">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+-->
