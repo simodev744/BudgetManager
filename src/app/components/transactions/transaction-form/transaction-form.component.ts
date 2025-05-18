@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-transaction-form',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   standalone: true,
   styleUrl: './transaction-form.component.css'
 })
-export class TransactionFormComponent {
+export class TransactionFormComponent{
+
 
 }

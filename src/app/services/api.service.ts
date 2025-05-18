@@ -11,7 +11,6 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // Categories
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.baseUrl}/categories`);
   }
@@ -32,7 +31,7 @@ export class ApiService {
     return this.http.delete<void>(`${this.baseUrl}/categories/${id}`);
   }
 
-  // Transactions
+
   getTransactions(params?: {
     categoryId?: number;
     minAmount?: number;
@@ -68,7 +67,7 @@ export class ApiService {
     return this.http.delete<void>(`${this.baseUrl}/transactions/${id}`);
   }
 
-  // Budgets
+
   getBudgets(): Observable<Budget[]> {
     return this.http.get<Budget[]>(`${this.baseUrl}/budgets`);
   }
