@@ -7,12 +7,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
     
-    CategoryDto toDto(Category category);
+    CategoryDto toDto(Optional<Category> category);
     
     List<CategoryDto> toDtoList(List<Category> categories);
     
